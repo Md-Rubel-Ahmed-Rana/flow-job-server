@@ -20,10 +20,11 @@ app.get("/", (req, res) => {
     res.send("Job portal server is running")
 })
 
+
 // routes
 
 // user route
-app.use("/users", userRouter)
+app.use(userRouter)
 
 
 mongoose.set('strictQuery', false)
