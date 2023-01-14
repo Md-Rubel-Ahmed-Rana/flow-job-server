@@ -6,8 +6,7 @@ const getUsers = (req, res) => {
 }
 
 // create new user
-const createUser =  (req, res) => {
-    console.log("From controller");
+const createUser =  async(req, res) => {
     try {
         const newUser = new User({
             name: req.body.name,
