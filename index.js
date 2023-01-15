@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 const candidateRouter = require("./routers/candidate.router");
+const recruiterRouter = require("./routers/recruiter.router");
 const DB_URI = require("./config/config");
 
 // create express app
@@ -24,6 +25,12 @@ app.get("/", (req, res) => {
 // ========== routes ===============
 // candidate route
 app.use("/api", candidateRouter)
+
+
+// recruiter route
+app.use("/api/recruiter", recruiterRouter)
+
+
 
 
 

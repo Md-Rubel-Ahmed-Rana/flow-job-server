@@ -1,4 +1,4 @@
-const Candidate = require("../models/user.model")
+const Candidate = require("../models/candidate.model")
 
 
 
