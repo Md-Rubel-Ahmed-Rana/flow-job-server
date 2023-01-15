@@ -14,7 +14,7 @@ const candidateDataValidation = [
         check("password")
             .notEmpty()
             .withMessage("Password is not valid")
-            .isLength({ min: 8 })
+            .isLength({ min: 6 })
             .withMessage("Password must have 8 charecters"),
         (req, res, next) => {
             const errors = validationResult(req);
