@@ -2,6 +2,13 @@ const Candidate = require("../models/user.model")
 
 
 
+// get all the candidates
+const getAllCandidates = async(req, res) => {
+    const candidates = await Candidate.find({});
+    res.status(200).json({ success: true, candidates: candidates })
+}
+
+
 // create new user
 const createCandidate =  async(req, res) => {
     try {
@@ -19,4 +26,4 @@ const createCandidate =  async(req, res) => {
 }
 
 
-module.exports = { createCandidate }
+module.exports = { createCandidate, getAllCandidates }
