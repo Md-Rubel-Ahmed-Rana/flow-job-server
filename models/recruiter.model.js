@@ -12,6 +12,14 @@ const recruiterSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    role:{
+        type: String,
+        default: "recruiter"
+    },
+    date: {
+        type: Date,
+        default: Date.now()
     }
 });
 
