@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
-const userRouter = require("./routers/user.router");
+const candidateRouter = require("./routers/candidate.router");
 const DB_URI = require("./config/config");
 
 // create express app
@@ -21,14 +21,13 @@ app.get("/", (req, res) => {
 })
 
 
-// routes
+// ========== routes ===============
+// candidate route
+app.use("/api", candidateRouter)
 
-// user route
-app.use(userRouter)
 
 
 mongoose.set('strictQuery', false)
-
 // connecting to database
 mongoose.connect(DB_URI, () => {
     console.log("Database connected");
