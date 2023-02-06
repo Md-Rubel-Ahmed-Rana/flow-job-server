@@ -13,6 +13,18 @@ const recruiterSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    company: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    officeEmail: {
+        type: String,
+        required: true
+    },
     role:{
         type: String,
         default: "recruiter"

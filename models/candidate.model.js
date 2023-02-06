@@ -16,6 +16,10 @@ const candidateSchema = mongoose.Schema({
     skills:{
     type: Array,
     },
+    role: {
+        type: String,
+        default: "candidate",
+    },
     date: {
         type: Date,
         default: Date.now(),

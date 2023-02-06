@@ -5,10 +5,10 @@ const router = require("express").Router();
 
 
 // get all the candidates
-router.get("/candidate", getAllCandidates)
+router.get("/", getAllCandidates)
 
 // create new candidate
-router.post("/candidate", candidateDataValidation, createCandidate)
+router.post("/", candidateDataValidation, createCandidate)
 
 
 module.exports = router
