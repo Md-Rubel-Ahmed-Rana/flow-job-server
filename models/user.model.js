@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const candidateSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -12,12 +12,9 @@ const candidateSchema = mongoose.Schema({
     role: {
         type: String,
         required: true
-    },
-    date: {
-        type: Date,
-        default: Date.now(),
-    },
- }
-);
+    }
+})
 
-module.exports = mongoose.model("Candidate", candidateSchema)
+const User = mongoose.model("User", userSchema);
+
+module.exports = User

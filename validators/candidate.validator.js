@@ -11,11 +11,9 @@ const candidateDataValidation = [
             .notEmpty()
             .isEmail()
             .withMessage("Not a valid email"),
-        check("password")
+        check("role")
             .notEmpty()
-            .withMessage("Password is not valid")
-            .isLength({ min: 6 })
-            .withMessage("Password must have 8 charecters"),
+            .withMessage("Role is required"),
         (req, res, next) => {
             const errors = validationResult(req);
             if(!errors.isEmpty()){

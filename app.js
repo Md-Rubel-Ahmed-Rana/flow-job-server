@@ -5,6 +5,7 @@ const recruiterRouter = require("./routers/recruiter.router");
 const passport = require("passport");
 const generateToken = require("./middleware/generateToken");
 const verifyPassword = require("./middleware/verifyPassword");
+const userRouter = require("./routers/user.router");
 // create express app
 const app = express();
 
@@ -24,6 +25,9 @@ app.get("/", (req, res) => {
 app.use("/api/candidates", candidateRouter)
 // recruiter route
 app.use("/api/recruiters", recruiterRouter);
+
+// testing route for user register
+app.use("/users", userRouter)
 
 // private route
 app.post('/login', verifyPassword, generateToken, (req, res) => {
