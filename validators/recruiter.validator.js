@@ -11,11 +11,6 @@ const recruiterDataValidation = [
         .notEmpty()
         .isEmail()
         .withMessage("Not a valid email"),
-    check("password")
-        .notEmpty()
-        .withMessage("Password is not valid")
-        .isLength({ min: 6 })
-        .withMessage("Password must have 8 charecters"),
     check("company")
         .notEmpty()
         .withMessage("Company name is required"),

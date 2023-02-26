@@ -6,6 +6,8 @@ const passport = require("passport");
 const generateToken = require("./middleware/generateToken");
 const verifyPassword = require("./middleware/verifyPassword");
 const userRouter = require("./routers/user.router");
+const candidateModel = require("./models/candidate.model");
+const recruiterModel = require("./models/recruiter.model");
 // create express app
 const app = express();
 
@@ -27,7 +29,19 @@ app.use("/api/candidates", candidateRouter)
 app.use("/api/recruiters", recruiterRouter);
 
 // testing route for user register
-app.use("/users", userRouter)
+app.get("/currentUser/:email", async(req, res) => {
+    try {
+        const recruiter = await recruiterModel.findOne({ email: req.params.email });
+        if (recruiter) {
+            return res.send({ user: recruiter }) 
+        }else{
+            const candidate = await candidateModel.findOne({ email: req.params.email });
+            return res.send({ user: candidate })
+        }
+    } catch (error) {
+        
+    }
+})
 
 // private route
 app.post('/login', verifyPassword, generateToken, (req, res) => {

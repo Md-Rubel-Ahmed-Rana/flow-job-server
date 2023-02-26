@@ -19,13 +19,14 @@ const createRecruiter = async(req, res) => {
         const recruiter = await Recruiter.findOne({ email: req.body.email });
         if (recruiter || candidate) { return res.send({ error: "Account already used" }) }
         
-        bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
-            if (err) { return res.send({ error: err.message }) }
-            const { name, email, company, address, officeEmail } = req.body
-            const newRecruiter = new Recruiter({ name, email, company, address, officeEmail,  password: hashedPassword })
+        // bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
+            // if (err) { return res.send({ error: err.message }) }
+            const { name, email, company, address, officeEmail } = req.body;
+        console.log(req.body);
+            const newRecruiter = new Recruiter({ name, email, company, address, officeEmail})
             await newRecruiter.save()
-            res.status(201).send({ success: true, message: "Account created successfully" })
-        })
+            res.send({ success: true, message: "Account created successfully" })
+        // })
     } catch (error) {
         res.status(500).send({ message: error.message })
     }

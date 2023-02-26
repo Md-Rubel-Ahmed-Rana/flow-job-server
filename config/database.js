@@ -2,10 +2,12 @@ const DB_URI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@clus
 const mongoose = require("mongoose");
 
 
+const db_type = "Cluster"
+
 mongoose.set('strictQuery', false)
 // connecting to database
 mongoose.connect(DB_URI, () => {
-    console.log("Database connected");
+    console.log("Database connected", "with", db_type);
 })
 
 

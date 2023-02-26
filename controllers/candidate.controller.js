@@ -2,7 +2,7 @@ const Candidate = require("../models/candidate.model")
 const Recruiter = require("../models/recruiter.model")
 
 // get all the candidates
-const getAllCandidates = async(req, res) => {
+const getAllCandidates = async (req, res, next) => {
     try {
         const candidates = await Candidate.find({});
         res.status(200).json({ success: true, candidates: candidates })
@@ -12,7 +12,7 @@ const getAllCandidates = async(req, res) => {
 }
 
 // create new user
-const createCandidate =  async(req, res) => {
+const createCandidate = async (req, res, next) => {
     try {
         const candidate = await Candidate.findOne({ email: req.body.email });
         const recruiter = await Recruiter.findOne({ email: req.body.email });
@@ -26,5 +26,11 @@ const createCandidate =  async(req, res) => {
     }
 }
 
+const getSingleCandidate  = async(req,res, next) => {
+    console.log(req.params.email);
+    const candidate = await Candidate.findOne({ email: req.params.email });
+    console.log(candidate);
+    // res.send(candidate)
+}
 
-module.exports = { createCandidate, getAllCandidates }
+module.exports = { createCandidate, getAllCandidates, getSingleCandidate }
