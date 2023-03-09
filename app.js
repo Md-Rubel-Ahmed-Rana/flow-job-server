@@ -5,9 +5,9 @@ const recruiterRouter = require("./routers/recruiter.router");
 const passport = require("passport");
 const generateToken = require("./middleware/generateToken");
 const verifyPassword = require("./middleware/verifyPassword");
-const userRouter = require("./routers/user.router");
 const candidateModel = require("./models/candidate.model");
 const recruiterModel = require("./models/recruiter.model");
+const jobRouter = require("./routers/job.route");
 // create express app
 const app = express();
 
@@ -27,6 +27,9 @@ app.get("/", (req, res) => {
 app.use("/api/candidates", candidateRouter)
 // recruiter route
 app.use("/api/recruiters", recruiterRouter);
+
+// jobs route
+app.use("/api/jobs", jobRouter)
 
 // testing route for user register
 app.get("/currentUser/:email", async(req, res) => {
@@ -55,5 +58,11 @@ app.get("/profile", passport.authenticate('jwt', { session: false }, (req, res) 
 }))
 
 // error handler
+app.use("*", (req, res) => {
+    return res.status(404).json({
+        succes: false,
+        message: "Route not found"
+    })
+})
 
 module.exports = app
