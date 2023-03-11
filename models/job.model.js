@@ -5,11 +5,11 @@ const jobSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    location: {
+    jobType: {
         type: String,
         required: true
     },
-    jobType: {
+    location: {
         type: String,
         required: true
     },
@@ -41,24 +41,16 @@ const jobSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    requiredTechs: {
-        type: String,
-        required: true
-    },
-    goodToTechs: {
-        type: String,
+    skills: {
+        type: Array,
         required: true
     },
     requirements: {
-        type: String,
+        type: Array,
         required: true
     },
     responsibilities: {
-        type: String,
-        required: true
-    },
-    aboutCompany: {
-        type: String,
+        type: Array,
         required: true
     },
 })
