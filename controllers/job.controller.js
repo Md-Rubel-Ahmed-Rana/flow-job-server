@@ -17,6 +17,23 @@ const getJobs = async(req, res, next) => {
     }
 }
 
+const getSingleJob = async(req, res, next) => {
+    try {
+        const id = req.params.id
+        const job = await Jobs.findOne({_id: id});
+        return res.status(200).send({
+            success: true,
+            job: job
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "There was an server side error occured.",
+            error: error.message
+        })
+    }
+}
+
 const createJob = async(req, res, next) =>{
     try {
         const { title, jobType, employerEmail, officialEmail } = req.body;
@@ -40,4 +57,21 @@ const createJob = async(req, res, next) =>{
     }
 }
 
-module.exports = { getJobs, createJob }
+const deleteJob = async(req, res, next) => {
+    try {
+        const id = req.params.id;
+        await Jobs.findByIdAndDelete(id);
+        return res.status(200).json({
+            success: true,
+            message: "Job deleted successfully",
+        }) 
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "There was an server side error occured.",
+            error: error.message
+        })
+    }
+}
+
+module.exports = { getJobs, createJob, deleteJob, getSingleJob }
