@@ -53,6 +53,14 @@ const jobSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    experience: {
+        type: String,
+        required: true
+    },
+    employerType: {
+        type: String,
+        required: true
+    },
     skills: {
         type: Array,
         required: true
@@ -64,6 +72,9 @@ const jobSchema = mongoose.Schema({
     responsibilities: {
         type: Array,
         required: true
+    },
+    applicants: {
+        type: Array,
     },
 })
 const Jobs = mongoose.model("Job", jobSchema);

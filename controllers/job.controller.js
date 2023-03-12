@@ -37,10 +37,10 @@ const getSingleJob = async(req, res, next) => {
 const createJob = async(req, res, next) =>{
     try {
         const { title, companyName, companySize, jobType, jobPlace, overview, location, employerEmail, officialEmail } = req.body;
-        const { website, salary, workDay, workTime } = req.body;
-        const { skills, requirements, responsibilities  } = req.body;
+        const { website, salary, workDay, workTime, experience } = req.body;
+        const { skills, requirements, responsibilities, employerType  } = req.body;
 
-        const newJob = await Jobs({ title, companyName, companySize, jobType, jobPlace, overview, location, employerEmail, officialEmail, website, salary, workDay, workTime, skills, requirements, responsibilities });
+        const newJob = await Jobs({ title, companyName, companySize, jobType, jobPlace, overview, location, employerEmail, officialEmail, website, salary, workDay, workTime, experience, employerType, skills, requirements, responsibilities });
         // save the job to db
         await newJob.save();
         return res.status(201).json({
@@ -73,4 +73,8 @@ const deleteJob = async(req, res, next) => {
     }
 }
 
-module.exports = { getJobs, createJob, deleteJob, getSingleJob }
+const applyJob = (req, res, next) => {
+    const id = req.params.id;
+}
+
+module.exports = { getJobs, createJob, deleteJob, getSingleJob, applyJob }
