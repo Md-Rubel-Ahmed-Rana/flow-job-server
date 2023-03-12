@@ -5,7 +5,23 @@ const jobSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    companyName: {
+        type: String,
+        required: true
+    },
+    companySize: {
+        type: String,
+        required: true
+    },
     jobType: {
+        type: String,
+        required: true
+    },
+    jobPlace: {
+        type: String,
+        required: true
+    },
+    overview: {
         type: String,
         required: true
     },
@@ -34,10 +50,6 @@ const jobSchema = mongoose.Schema({
         required: true
     },
     workTime: {
-        type: String,
-        required: true
-    },
-    aboutEmployer: {
         type: String,
         required: true
     },

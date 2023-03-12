@@ -36,12 +36,11 @@ const getSingleJob = async(req, res, next) => {
 
 const createJob = async(req, res, next) =>{
     try {
-        const { title, jobType, employerEmail, officialEmail } = req.body;
-        const { website, salary, workDay, workTime, aboutEmployer, location } = req.body;
-        const { skills, requirements, responsibilities } = req.body;
+        const { title, companyName, companySize, jobType, jobPlace, overview, location, employerEmail, officialEmail } = req.body;
+        const { website, salary, workDay, workTime } = req.body;
+        const { skills, requirements, responsibilities  } = req.body;
 
-
-        const newJob = await Jobs({ title, jobType, location, employerEmail, officialEmail, website, salary, workDay, workTime, aboutEmployer, skills, requirements, responsibilities });
+        const newJob = await Jobs({ title, companyName, companySize, jobType, jobPlace, overview, location, employerEmail, officialEmail, website, salary, workDay, workTime, skills, requirements, responsibilities });
         // save the job to db
         await newJob.save();
         return res.status(201).json({
