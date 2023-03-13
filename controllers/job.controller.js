@@ -73,8 +73,35 @@ const deleteJob = async(req, res, next) => {
     }
 }
 
-const applyJob = (req, res, next) => {
-    const id = req.params.id;
+const applyJob = async(req, res, next) => {
+    try {
+        const { jobId, candidateId, candidateEmail } = req.body;
+        const filter = { _id: jobId }
+        const application = { jobId, candidateId, candidateEmail };
+        const updatedDoc = {
+            $push: { applicants: application }
+        }
+        const result = await Jobs.updateOne(filter, updatedDoc);
+        if (result?.modifiedCount > 0 && result?.acknowledged) {
+            return res.status(200).json({
+                success: true,
+                message: "Application sent to Employer"
+            })
+        }
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "There was an server side error occured.",
+            error: error.message
+        })
+    }
 }
 
-module.exports = { getJobs, createJob, deleteJob, getSingleJob, applyJob }
+const getMyJobs = async(req, res, next) => {
+    const email = req.params.email;
+    const query = { applicants: { $elemMatch: { candidateEmail: email } } };
+    const myJobs = await Jobs.find(query)
+    res.status(200).json(myJobs)
+}
+
+module.exports = { getJobs, createJob, deleteJob, getSingleJob, applyJob, getMyJobs }

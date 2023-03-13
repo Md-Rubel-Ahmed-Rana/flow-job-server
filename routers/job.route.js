@@ -1,4 +1,4 @@
-const { getJobs, createJob, deleteJob, getSingleJob, applyJob } = require("../controllers/job.controller");
+const { getJobs, createJob, deleteJob, getSingleJob, applyJob, getMyJobs } = require("../controllers/job.controller");
 
 const jobRouter = require("express").Router();
 
@@ -10,6 +10,8 @@ jobRouter.post("/", createJob);
 
 jobRouter.delete("/:id", deleteJob)
 
-jobRouter.patch("/apply/:id", applyJob)
+jobRouter.patch("/apply", applyJob);
+
+jobRouter.get("/myjobs/:email", getMyJobs);
 
 module.exports = jobRouter
